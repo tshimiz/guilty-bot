@@ -22,11 +22,13 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        message = {
-          type: 'text',
-          text: 'ギルティ'
-        }
-        client.reply_message(event['replyToken'], message)
+        if /判定/ =~ Line::Bot::Event::Message.message
+          message = {
+            type: 'text',
+            text: 'ギルティ'
+          }
+          client.reply_message(event['replyToken'], message)
+        end
       end
     end
   }
