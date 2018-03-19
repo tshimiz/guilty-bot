@@ -27,6 +27,7 @@ post '/callback' do
           text: 'ギルティ'
         }
         client.reply_message(event['replyToken'], message)
+      end
     end
   }
   "OK"
