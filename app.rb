@@ -23,17 +23,14 @@ post '/callback' do
       case event.type
       when Line::Bot::Event::MessageType::Text
         if /判定/ =~ event.message['text']
+          result = 'ギルティ！！'
           if rand(10) > 8
-            message = {
-              type: 'text',
-              text: 'ジャスティス！！'
-            }
-          else
-            message = {
-              type: 'text',
-              text: 'ギルティ！！'
-            }
+            result = 'ジャスティス！！'
         　end
+          message = {
+            type: 'text',
+            text: "#{result}"
+          }
           client.reply_message(event['replyToken'], message)
         end
       end
